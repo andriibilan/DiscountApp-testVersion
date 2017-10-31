@@ -33,38 +33,25 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let card = cardArray[indexPath.row]
         cell.name?.text = card.cardName
         cell.cardDescription?.text = card.cardDescription
+        cell.date.text = String(describing: card.cardDate!)
         
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//        if editingStyle == .delete {
-//            let card = cardArray[indexPath.row]
-//            context.delete(card)
- //         (UIApplication.shared.delegate as! AppDelegate).saveContext()
-//
-//            do{
-//                cardArray = try context.fetch(Card.fetchRequest())
-//            } catch{
-//                print(error)
-//            }
-//        }
-//        prototypeTableView.reloadData()
-//    }
+
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
+
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (rowAction, indexPath) in
             //TODO:
         }
         editAction.backgroundColor = .blue
-        
+
         let shareAction = UITableViewRowAction(style: .normal, title: "Share") { (rowAction, indexPath) in
             //TODO:
         }
         shareAction.backgroundColor = .green
-        
+
         let deleteAction = UITableViewRowAction(style: .normal , title: "Delete") { (rowAction, indexPath) in
             let cardID = self.cardArray[indexPath.row]
             self.card.getContext().delete(cardID)
@@ -77,28 +64,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.prototypeTableView.reloadData()
         }
         deleteAction.backgroundColor = .red
-        
+
         return [editAction, shareAction, deleteAction]
     }
-    
-    
-    func fetchData() {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        do{
-            cardArray = try context.fetch(Card.fetchRequest())
-        } catch {
-            print("Error fetch")
-        }
-        
-    }
-    
-    
-    
-    
-    
-    
-    
     
     
     override func viewDidLoad() {
@@ -114,7 +82,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let identifier = segue.identifier {
             switch identifier {
             case "Show Edit":
-                let seguedToEdit = segue.destination as? MainViewController
+                _ = segue.destination as? MainViewController
                 //            case "Cancel Edit" :
             //                let seguedToTableV = segue.destination as? TableViewController
             default :  break
@@ -123,6 +91,24 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    
+    override func viewWillDisappear(_ animated: Bool) {
+         super.viewWillDisappear(animated)
+        
+    }
+    
+    func fetchData() {
+        let context = card.getContext()
+        
+        do{
+            cardArray = try context.fetch(Card.fetchRequest())
+        } catch {
+            print("Error fetch")
+        }
+        
+    }
+    
+        
     
     
     

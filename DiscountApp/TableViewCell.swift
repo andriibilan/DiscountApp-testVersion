@@ -11,9 +11,9 @@ import UIKit
 class TableViewCell: UITableViewCell {
 
 
-    @IBOutlet weak var imagePrototype: UIImageView!
-    @IBOutlet weak var name: UILabel?
-    @IBOutlet weak var cardDescription: UILabel?
+   @IBOutlet weak var imagePrototype: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var cardDescription: UILabel!
     @IBOutlet weak var date: UILabel!
     
     override func awakeFromNib() {

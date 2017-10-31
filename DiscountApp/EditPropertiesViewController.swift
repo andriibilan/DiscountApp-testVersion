@@ -23,22 +23,33 @@ class EditPropertiesViewController: UIViewController {
     
     @IBAction func createCard(_ sender: Any) {
         
-        if (cardName?.text != "" || cardName?.text != nil) && (cardDescription?.text != "" || cardDescription?.text != nil){
-            
+//        if
+//          cardName.text != "" && cardDescription.text != ""
+//        {
+
             let newCard = Card(context:card.getContext())
             newCard.setValue(self.cardName.text!, forKey: "cardName")
             newCard.setValue(self.cardDescription.text!, forKey: "cardDescription")
-            
-            card.storeObj()
+            newCard.setValue(datetimer(), forKey: "cardDate")
+            card.saveData()
+//        }
+//        else {
+//            print("fill all field")
+//        }
 
-            
-            
-        } else {
-            print("fill all field")
-        }
-        
         
     }
+    
+    func datetimer() -> Date {
+        let date = NSDate()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let dateString = dateFormatter.string(from: date as Date)
+        let dateT = dateFormatter.date(from: dateString)
+        return dateT!
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +57,11 @@ class EditPropertiesViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-  
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+    }
+    
     
 
 }

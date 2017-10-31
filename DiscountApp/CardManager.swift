@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 class CardManager: NSObject {
-
+    
     func getContext() ->NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
@@ -20,8 +20,13 @@ class CardManager: NSObject {
         let context = getContext()
         let entity = NSEntityDescription.entity(forEntityName: "Card", in: context)
         
-        _ = NSManagedObject(entity: entity!, insertInto: context)
+        let  manageObj = NSManagedObject(entity: entity!, insertInto: context)
         
+ 
+    }
+    
+    func saveData(){
+        let context = getContext()
         do {
             try context.save()
         }
@@ -30,5 +35,7 @@ class CardManager: NSObject {
         }
     }
     
+
     
+
 }
