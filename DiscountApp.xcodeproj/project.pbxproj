@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8A10DCF41FA78AB8002D1439 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A10DCF31FA78AB8002D1439 /* MainViewController.swift */; };
+		8A5EE0D11FA9D6A0003DC6C3 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5EE0CF1FA9D6A0003DC6C3 /* Card.swift */; };
 		8A934DB11FA746BC006C4198 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A934DB01FA746BC006C4198 /* TableViewCell.swift */; };
 		8A934DB71FA76A9D006C4198 /* EditPropertiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A934DB61FA76A9D006C4198 /* EditPropertiesViewController.swift */; };
 		8A9D57241FA718070097A992 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9D57231FA718070097A992 /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		8A10DCF31FA78AB8002D1439 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		8A5EE0CF1FA9D6A0003DC6C3 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		8A934DB01FA746BC006C4198 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		8A934DB61FA76A9D006C4198 /* EditPropertiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPropertiesViewController.swift; sourceTree = "<group>"; };
 		8A9D57201FA718070097A992 /* DiscountApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscountApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +65,7 @@
 		8A9D57221FA718070097A992 /* DiscountApp */ = {
 			isa = PBXGroup;
 			children = (
+				8A5EE0CF1FA9D6A0003DC6C3 /* Card.swift */,
 				8A9D57271FA718070097A992 /* Main.storyboard */,
 				8A9D572A1FA718070097A992 /* DiscountApp.xcdatamodeld */,
 				8A934DB01FA746BC006C4198 /* TableViewCell.swift */,
@@ -156,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A5EE0D11FA9D6A0003DC6C3 /* Card.swift in Sources */,
 				8A934DB71FA76A9D006C4198 /* EditPropertiesViewController.swift in Sources */,
 				8A9D572C1FA718070097A992 /* DiscountApp.xcdatamodeld in Sources */,
 				8A934DB11FA746BC006C4198 /* TableViewCell.swift in Sources */,

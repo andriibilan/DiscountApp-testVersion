@@ -158,23 +158,12 @@
             <objects>
                 <viewController id="khJ-lj-ebe" customClass="EditPropertiesViewController" customModule="DiscountApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LDi-PC-51p" customClass="EditViewController" customModule="DiscountApp" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Card name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kl4-SH-71W">
-                                <rect key="frame" x="20" y="89" width="335" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="chO-tY-oXJ">
-                                <rect key="frame" x="20" y="144" width="335" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqS-BM-AWK">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jqS-BM-AWK">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="Uje-Ix-Wjx">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="bx6-Wm-qZg">
@@ -185,43 +174,86 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkw-wu-L1s">
-                                <rect key="frame" x="120" y="608" width="135" height="34"/>
-                                <color key="backgroundColor" red="0.0" green="0.19680017232894897" blue="0.99860352277755737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Create">
-                                    <color key="titleShadowColor" red="0.88735070169999997" green="0.049177578450000002" blue="0.0076235026810000002" alpha="0.89380886130000003" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="createCard:" destination="khJ-lj-ebe" eventType="touchUpInside" id="HBo-Yf-Wf2"/>
-                                </connections>
-                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xnO-8h-OnY">
+                                <rect key="frame" x="0.0" y="64" width="375" height="916"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eoe-xj-tZM">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="936"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Card name...." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Un-Kx-rI5">
+                                                <rect key="frame" x="24" y="49" width="326" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description...." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x5e-6Y-87P">
+                                                <rect key="frame" x="24" y="127" width="326" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3pD-dS-xgt">
+                                                <rect key="frame" x="24" y="211" width="326" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.87322145699999998" green="0.98523384329999997" blue="0.07190831751" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="rXu-02-dp2" appends="YES" id="rOH-SZ-jl5"/>
+                                                </connections>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yw-JR-sfp">
+                                                <rect key="frame" x="143" y="863" width="88" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.88735070169999997" green="0.049177578450000002" blue="0.0076235026810000002" alpha="0.89380886130000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Create">
+                                                    <color key="titleShadowColor" red="0.88735070169999997" green="0.049177578450000002" blue="0.0076235026810000002" alpha="0.89380886130000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="createCard:" destination="khJ-lj-ebe" eventType="touchUpInside" id="gQD-jy-W8Q"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="936" id="rmm-zt-5Hx"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="eoe-xj-tZM" secondAttribute="bottom" constant="-20" id="9c9-Jb-7fL"/>
+                                    <constraint firstItem="eoe-xj-tZM" firstAttribute="leading" secondItem="xnO-8h-OnY" secondAttribute="leading" id="CDX-KN-5OY"/>
+                                    <constraint firstItem="eoe-xj-tZM" firstAttribute="centerX" secondItem="xnO-8h-OnY" secondAttribute="centerX" id="Sfo-hK-2Fq"/>
+                                    <constraint firstAttribute="trailing" secondItem="eoe-xj-tZM" secondAttribute="trailing" id="UPl-Cg-paa"/>
+                                    <constraint firstItem="eoe-xj-tZM" firstAttribute="top" secondItem="xnO-8h-OnY" secondAttribute="top" id="cHE-f8-gOq"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ufw-2a-bGD" firstAttribute="bottom" secondItem="dkw-wu-L1s" secondAttribute="bottom" constant="25" id="10h-mE-pG1"/>
-                            <constraint firstItem="kl4-SH-71W" firstAttribute="leading" secondItem="ufw-2a-bGD" secondAttribute="leading" constant="20" id="3LX-SU-u53"/>
-                            <constraint firstItem="ufw-2a-bGD" firstAttribute="trailing" secondItem="dkw-wu-L1s" secondAttribute="trailing" constant="120" id="8a1-li-uVt"/>
-                            <constraint firstItem="ufw-2a-bGD" firstAttribute="trailing" secondItem="chO-tY-oXJ" secondAttribute="trailing" constant="20" id="FyQ-gd-Uiq"/>
-                            <constraint firstItem="ufw-2a-bGD" firstAttribute="top" secondItem="jqS-BM-AWK" secondAttribute="top" id="K2x-de-lF2"/>
-                            <constraint firstItem="dkw-wu-L1s" firstAttribute="leading" secondItem="ufw-2a-bGD" secondAttribute="leading" constant="120" id="LFX-VE-5GI"/>
-                            <constraint firstItem="ufw-2a-bGD" firstAttribute="trailing" secondItem="kl4-SH-71W" secondAttribute="trailing" constant="20" id="SpE-il-9NM"/>
-                            <constraint firstItem="jqS-BM-AWK" firstAttribute="leading" secondItem="ufw-2a-bGD" secondAttribute="leading" id="U9D-4E-GzH"/>
-                            <constraint firstItem="chO-tY-oXJ" firstAttribute="top" secondItem="kl4-SH-71W" secondAttribute="bottom" constant="25" id="V9t-JO-1WS"/>
-                            <constraint firstItem="chO-tY-oXJ" firstAttribute="leading" secondItem="ufw-2a-bGD" secondAttribute="leading" constant="20" id="WQX-7x-KDv"/>
-                            <constraint firstItem="kl4-SH-71W" firstAttribute="top" secondItem="jqS-BM-AWK" secondAttribute="bottom" constant="25" id="tzB-ka-XBR"/>
-                            <constraint firstItem="ufw-2a-bGD" firstAttribute="trailing" secondItem="jqS-BM-AWK" secondAttribute="trailing" id="yN9-c4-KKh"/>
+                            <constraint firstItem="ufw-2a-bGD" firstAttribute="trailing" secondItem="xnO-8h-OnY" secondAttribute="trailing" id="DfV-c9-eBO"/>
+                            <constraint firstItem="xnO-8h-OnY" firstAttribute="top" secondItem="ufw-2a-bGD" secondAttribute="top" constant="44" id="Idc-qR-P7D"/>
+                            <constraint firstItem="ufw-2a-bGD" firstAttribute="bottom" secondItem="xnO-8h-OnY" secondAttribute="bottom" constant="20" id="gQc-WY-Bzm"/>
+                            <constraint firstItem="xnO-8h-OnY" firstAttribute="leading" secondItem="ufw-2a-bGD" secondAttribute="leading" id="n2v-C2-xKc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ufw-2a-bGD"/>
                     </view>
+                    <size key="freeformSize" width="375" height="1000"/>
                     <connections>
-                        <outlet property="cardDescription" destination="chO-tY-oXJ" id="4sJ-LM-Gtq"/>
-                        <outlet property="cardName" destination="kl4-SH-71W" id="clT-dT-XYB"/>
+                        <outlet property="cardDescription" destination="x5e-6Y-87P" id="355-Lz-IYn"/>
+                        <outlet property="cardName" destination="9Un-Kx-rI5" id="aSN-5E-n0M"/>
+                        <outlet property="frontImage" destination="3pD-dS-xgt" id="D25-I0-9JE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msM-e0-Sbp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="rXu-02-dp2">
+                    <connections>
+                        <action selector="tapToAddImage:" destination="khJ-lj-ebe" id="7Gb-8x-PI6"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="970" y="-82"/>
+            <point key="canvasLocation" x="968.79999999999995" y="-82.758620689655174"/>
         </scene>
     </scenes>
 </document>

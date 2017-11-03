@@ -9,7 +9,7 @@
 import UIKit
 //import CoreData
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate {
       
       var card = CardManager()
     
@@ -31,19 +31,40 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = prototypeTableView.dequeueReusableCell(withIdentifier: "prototypeCell", for: indexPath) as! TableViewCell
         let card = cardArray[indexPath.row]
+       
         cell.name?.text = card.cardName
-        cell.cardDescription?.text = card.cardDescription
-        cell.date.text = String(describing: card.cardDate!)
+        print("card name : \(String(describing: card.cardName))")
         
+        cell.cardDescription?.text = card.cardDescription
+        print("card descr : \(String(describing: card.cardDescription))")
+        
+        cell.date.text = DateFormatter.localizedString(from: (card.cardDate as Date?)!, dateStyle: DateFormatter.Style.medium, timeStyle: DateFormatter.Style.short)
+        
+        cell.imagePrototype!.image = loadImageFromPath(path: card.cardFrontImage!, dates: card.cardDate! as Date )
+        
+        print("card foto : \(String(describing: card.cardFrontImage))")
         return cell
     }
     
-
+    func loadImageFromPath(path: String,dates: Date ) -> UIImage? {
+        let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+        let pathURL = URL(fileURLWithPath: documentDirectoryPath.appendingPathComponent("\(dates).jpg"))
+        do {
+            let imageData = try Data(contentsOf: pathURL)
+            return UIImage(data: imageData)
+        } catch {
+            print(error.localizedDescription)
+        }
+        return nil
+    }
+    
+   
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (rowAction, indexPath) in
             //TODO:
+            self.performSegue(withIdentifier: "Show Edit", sender: self)
         }
         editAction.backgroundColor = .blue
 
@@ -57,7 +78,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.card.getContext().delete(cardID)
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             do{
-                self.cardArray = try self.card.getContext().fetch(Card.fetchRequest())
+                self.cardArray = try self.card.getContext().fetch(Card.fetchRequest()) as! [Card]
             } catch{
                 print(error)
             }
@@ -101,7 +122,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let context = card.getContext()
         
         do{
-            cardArray = try context.fetch(Card.fetchRequest())
+            cardArray = try context.fetch(Card.fetchRequest()) as! [Card]
         } catch {
             print("Error fetch")
         }
