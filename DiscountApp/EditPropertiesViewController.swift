@@ -10,21 +10,48 @@ import UIKit
 class EditPropertiesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var card = CardManager()
-    
+    var imageIs = ""
     
     @IBOutlet weak var cardName: UITextField!
-    @IBOutlet weak var cardDescription: UITextField!
     @IBOutlet weak var frontImage: UIImageView?
+    @IBOutlet weak var backImage: UIImageView?
     
+    @IBOutlet weak var cardDescription: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.frontImage?.isUserInteractionEnabled = true
-
+        self.backImage?.isUserInteractionEnabled = true
+        
     }
-  
+    @IBAction func createCard(_ sender: Any) {
+        
+        if  cardName.text != "" && cardDescription.text != "" && frontImage != nil {
+            let newCard = Card(context:card.getContext())
+            newCard.cardName = cardName.text!
+            newCard.cardDescription = cardDescription.text!
+            // newCard.setValue(Date(), forKey: "cardDate")
+            newCard.cardDate = Date() as NSDate
+            newCard.cardFrontImage = addToUrl((frontImage?.image)!)
+            card.saveData()
+        }   else {
+            let alertController = UIAlertController(title: "OOPS", message: "You need to give all the informations required to save this product", preferredStyle: .alert)
+            
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
     
-@IBAction func tapToAddImage(_ sender: UITapGestureRecognizer) {
+    @IBAction func tapToFrontImage(_ sender: Any) {
+        imageIs = "frontImage"
+        allertAfterTapRecognizer()
+    }
+    @IBAction func tapToBackImage(_ sender: Any) {
+        imageIs = "backImage"
+        allertAfterTapRecognizer()
+    }
+    
+    func allertAfterTapRecognizer() {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = true
@@ -57,21 +84,20 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
         
         
         present(alertController, animated: true, completion: nil)
-    
- 
+        
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.dismiss(animated: true, completion: nil)
-        
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        if  imageIs == "frontImage" {
             self.frontImage?.image = image
-
-            
-   
+        }else{
+            self.backImage?.image = image
         }
-
-        
     }
+    
+    
     func addToUrl (_ photo: UIImage )  -> String {
         let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
         let imgPath = URL(fileURLWithPath: documentDirectoryPath.appendingPathComponent("\(Date()).jpg"))// Change extension if you want to save as PNG
@@ -84,39 +110,11 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
         return imageString
         
     }
-
-  
+    
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
-
-   
-    
-    
-    @IBAction func createCard(_ sender: Any) {
-        
-        if  cardName.text != "" && cardDescription.text != "" && frontImage != nil {
-            let newCard = Card(context:card.getContext())
-            newCard.cardName = cardName.text!
-            newCard.cardDescription = cardDescription.text!
-            // newCard.setValue(Date(), forKey: "cardDate")
-            newCard.cardDate = Date() as NSDate
-            newCard.cardFrontImage = addToUrl((frontImage?.image)!)
-            card.saveData()
-        }   else {
-            let alertController = UIAlertController(title: "OOPS", message: "You need to give all the informations required to save this product", preferredStyle: .alert)
-            
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
-        }
-    }
-
-    
-
-
-   
-    
     
 
 }

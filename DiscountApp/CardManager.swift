@@ -26,15 +26,46 @@ class CardManager: NSObject {
     }
     
     func saveData(){
-        let context = getContext()
         do {
-            try context.save()
+            try getContext().save()
         }
         catch {
             print(error.localizedDescription)
         }
     }
     
-
-
+    func fetchData(filter: String?) -> [Card]{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName :"Card")
+        if filter != nil && filter != "" {
+            fetchRequest.predicate = NSPredicate(format: "filter == %@", filter!)
+            var cardArray:[Card] = []
+            
+            do{
+                cardArray = (try getContext().fetch(Card.fetchRequest()) as? [Card])!
+            } catch {
+                print("Error fetch")
+            }
+            return cardArray
+        } else {
+            do {
+                var cardArray: [Card] = []
+                cardArray = try getContext().fetch(Card.fetchRequest()) as! [Card]
+                return cardArray
+            } catch {
+                let cardArray: [Card] = []
+                return cardArray
+            }
+            
+        }
+        
+        
+    }
+    
 }
+
+
+
+
+
+
+

@@ -62,7 +62,7 @@
                                 <rect key="frame" x="0.0" y="120" width="375" height="517"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="prototypeCell" rowHeight="98" id="rmR-t7-xDv" customClass="TableViewCell" customModule="DiscountApp" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="prototypeCell" rowHeight="98" id="rmR-t7-xDv" customClass="TableViewCell" customModule="DiscountApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rmR-t7-xDv" id="38P-g6-FAa">
@@ -70,7 +70,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iCK-vm-3ka">
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="97.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="97.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="q04-qz-jG7">
                                                             <rect key="frame" x="0.0" y="0.0" width="144" height="82.5"/>
@@ -91,7 +91,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Yr8-XK-TMP">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="41"/>
+                                                            <rect key="frame" x="154" y="0.0" width="221" height="41"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lem-hj-fxd">
                                                                     <rect key="frame" x="0.0" y="0.0" width="44.5" height="20.5"/>
@@ -117,6 +117,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="iCK-vm-3ka" secondAttribute="bottom" id="oY0-pV-uym"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="cardDescription" destination="j9N-m8-fsJ" id="rZW-nj-mEg"/>
                                             <outlet property="date" destination="yFd-yv-TEo" id="scV-R9-ppl"/>
@@ -147,6 +148,7 @@
                     </view>
                     <connections>
                         <outlet property="prototypeTableView" destination="aFV-J8-dCi" id="wpg-DA-sNc"/>
+                        <outlet property="searchBar" destination="5T6-cb-UPb" id="Pyy-wK-PDe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Az-Wd-5Ng" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -187,13 +189,6 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description...." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x5e-6Y-87P">
-                                                <rect key="frame" x="24" y="127" width="326" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3pD-dS-xgt">
                                                 <rect key="frame" x="24" y="211" width="326" height="128"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -214,6 +209,22 @@
                                                     <action selector="createCard:" destination="khJ-lj-ebe" eventType="touchUpInside" id="gQD-jy-W8Q"/>
                                                 </connections>
                                             </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Bke-hV-CVo">
+                                                <rect key="frame" x="24" y="129" width="326" height="68"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.88735070169999997" green="0.049177578450000002" blue="0.0076235026810000002" alpha="0.89380886130000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UoI-Cw-YI6">
+                                                <rect key="frame" x="24" y="379" width="326" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="3MB-Gp-eLC" appends="YES" id="Sqn-2K-iKE"/>
+                                                </connections>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -241,15 +252,21 @@
                     </view>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
-                        <outlet property="cardDescription" destination="x5e-6Y-87P" id="355-Lz-IYn"/>
+                        <outlet property="backImage" destination="UoI-Cw-YI6" id="a2k-wX-rW7"/>
+                        <outlet property="cardDescription" destination="Bke-hV-CVo" id="XQu-5M-S1U"/>
                         <outlet property="cardName" destination="9Un-Kx-rI5" id="aSN-5E-n0M"/>
                         <outlet property="frontImage" destination="3pD-dS-xgt" id="D25-I0-9JE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msM-e0-Sbp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="rXu-02-dp2">
+                <tapGestureRecognizer id="rXu-02-dp2" userLabel="Tap Gesture RecognizerFront">
                     <connections>
-                        <action selector="tapToAddImage:" destination="khJ-lj-ebe" id="7Gb-8x-PI6"/>
+                        <action selector="tapToFrontImage:" destination="khJ-lj-ebe" id="OPA-id-3Lw"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="3MB-Gp-eLC" userLabel="Tap Gesture RecognizerBack">
+                    <connections>
+                        <action selector="tapToBackImage:" destination="khJ-lj-ebe" id="jI1-z5-em0"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
