@@ -5,7 +5,7 @@
 //  Created by andriibilan on 10/30/17.
 //  Copyright © 2017 andriibilan. All rights reserved.
 //
-
+import CoreImage
 import UIKit
 class EditPropertiesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -15,15 +15,19 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
     @IBOutlet weak var cardName: UITextField!
     @IBOutlet weak var frontImage: UIImageView?
     @IBOutlet weak var backImage: UIImageView?
-    
+    @IBOutlet weak var barCodeImage: UIImageView!
+    @IBOutlet weak var barCodeText: UITextField!
     @IBOutlet weak var cardDescription: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.frontImage?.isUserInteractionEnabled = true
         self.backImage?.isUserInteractionEnabled = true
-        
     }
+    
+    @IBAction func generateBarCode(_ sender: Any) {
+        barCodeImage.image = generateBarcode(from: barCodeText.text!)
+    }
+    
     @IBAction func createCard(_ sender: Any) {
         
         if  cardName.text != "" && cardDescription.text != "" && frontImage != nil {
@@ -87,6 +91,8 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
         
     }
     
+    
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.dismiss(animated: true, completion: nil)
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -110,11 +116,29 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
         return imageString
         
     }
-    
-    
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
 
+    func generateBarcode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        if barCodeText.text != nil && barCodeText.text != "" {
+            if let filter = CIFilter(name: "CICode128BarcodeGenerator") {
+                filter.setValue(data, forKey: "inputMessage")
+                let transform = CGAffineTransform(scaleX: 3, y: 3)
+                if let output = filter.outputImage?.transformed(by: transform) {
+                    return UIImage(ciImage: output)
+                }
+            }
+        }else{
+            let alertController = UIAlertController(title: "Error", message: "You need to write text for generate barcode", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            
+        }
+        return nil
+    }
+   
+    
 }

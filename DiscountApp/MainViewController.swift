@@ -5,14 +5,14 @@
 //  Created by andriibilan on 10/30/17.
 //  Copyright © 2017 andriibilan. All rights reserved.
 //
-
+import Foundation
 import UIKit
 //import CoreData
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate {
     var filter: String = ""
       var card = CardManager()
-    
+   
     @IBOutlet weak var prototypeTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -52,7 +52,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = prototypeTableView.dequeueReusableCell(withIdentifier: "prototypeCell", for: indexPath) as! TableViewCell
         let card = cardArray[indexPath.row]
        // cell.clipsToBounds = true
-    
         cell.name?.text = card.cardName
        // print("card name : \(String(describing: card.cardName))")
         
@@ -60,25 +59,46 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
        // print("card descr : \(String(describing: card.cardDescription))")
         
         cell.date.text = DateFormatter.localizedString(from: (card.cardDate as Date?)!, dateStyle: DateFormatter.Style.medium, timeStyle: DateFormatter.Style.short)
+
+       cell.imagePrototype!.image = loadImageFromPath(path: card.cardFrontImage!, dates: card.cardDate! as Date )
+      
+//        if let cacheImage = imageCashe.object(forKey: card.cardName as AnyObject){
+//            cell.imagePrototype.image = cacheImage as? UIImage
+//        } else {
+//             cell.imageURl = URL(string: card.cardFrontImage!)
+//            self.imageCashe.setObject(URL(string: card.cardFrontImage!) as AnyObject, forKey: card.cardName as AnyObject)
+//        }
         
-        cell.imagePrototype!.image = loadImageFromPath(path: card.cardFrontImage!, dates: card.cardDate! as Date )
-        
-       // print("card foto : \(String(describing: card.cardFrontImage))")
+      //  cell.imageURl = URL(string: card.cardFrontImage!)
+        print("card foto : \(String(describing: URL(string: card.cardFrontImage!)))")
+       
+
         return cell
     }
+
+
+    
+
+    
+    
+    
+    
     
     func loadImageFromPath(path: String,dates: Date ) -> UIImage? {
         let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
         let pathURL = URL(fileURLWithPath: documentDirectoryPath.appendingPathComponent("\(dates).jpg"))
+         print("Download image to TBV")
         do {
             let imageData = try Data(contentsOf: pathURL)
             return UIImage(data: imageData)
+
         } catch {
             print(error.localizedDescription)
         }
         return nil
+
     }
-    
+
    
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -110,7 +130,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return [editAction, shareAction, deleteAction]
     }
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
        // self.fetchData()
@@ -121,6 +141,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         searchBar.delegate = self
         //card.fetchData(filter: filter)
         // Do any additional setup after loading the view.
+        
+        let asd = NSCache<AnyObject, AnyObject>()
+    
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -148,12 +172,5 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
 }
 
-//class GlitchyModel
-//{
-//    func textForIndexPath(indexPath: NSIndexPath) -> String
-//    {
-//        Thread.sleep(forTimeInterval: 1)
-//        return "\(indexPath.row)"
-//    }
-//}
+
 

@@ -225,6 +225,28 @@
                                                     <outletCollection property="gestureRecognizers" destination="3MB-Gp-eLC" appends="YES" id="Sqn-2K-iKE"/>
                                                 </connections>
                                             </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k0j-Ly-d45">
+                                                <rect key="frame" x="24" y="530" width="326" height="120"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pzb-JS-OPq">
+                                                <rect key="frame" x="24" y="666" width="326" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAr-CN-LH9">
+                                                <rect key="frame" x="105" y="704" width="165" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Generate Bar Code">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="generateBarCode:" destination="khJ-lj-ebe" eventType="touchUpInside" id="VjY-R5-OQb"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -253,6 +275,8 @@
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="backImage" destination="UoI-Cw-YI6" id="a2k-wX-rW7"/>
+                        <outlet property="barCodeImage" destination="k0j-Ly-d45" id="g56-6j-gPg"/>
+                        <outlet property="barCodeText" destination="Pzb-JS-OPq" id="xfD-IL-j01"/>
                         <outlet property="cardDescription" destination="Bke-hV-CVo" id="XQu-5M-S1U"/>
                         <outlet property="cardName" destination="9Un-Kx-rI5" id="aSN-5E-n0M"/>
                         <outlet property="frontImage" destination="3pD-dS-xgt" id="D25-I0-9JE"/>
