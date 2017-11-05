@@ -9,50 +9,63 @@ import Foundation
 import UIKit
 //import CoreData
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate, UIPopoverPresentationControllerDelegate {
     var filter: String = ""
       var card = CardManager()
    
-    @IBOutlet weak var prototypeTableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var prototypeTableView: UITableView?
+    @IBOutlet weak var searchBar: UISearchBar?
     
     var  cardArray: [Card] = []
     
     
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-   
     func filterForTableView(text: String){
         cardArray = cardArray.filter( { (mod)-> Bool in
             return (mod.cardName?.lowercased().contains(text.lowercased()))!
         })
-        self.prototypeTableView.reloadData()
+        prototypeTableView?.reloadData()
     }
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchName: String) {
         if searchName.isEmpty{
             cardArray = card.fetchData(filter: filter )
-            self.prototypeTableView.reloadData()
+            prototypeTableView?.reloadData()
         } else {
             filterForTableView(text: searchName)
-            self.prototypeTableView.reloadData()
+            prototypeTableView?.reloadData()
             
         }
     }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cardArray.count
+   
+    func sortedCellFromPopover(_ identifierButton: String) {
+        switch identifierButton {
+        case "A ➞ Z":
+            cardArray.sort() {  $0.cardName.lowercased() < $1.cardName.lowercased() }
+            prototypeTableView?.reloadData()
+        case "Z ➞ A":
+            cardArray.sort() {  $0.cardName.lowercased() > $1.cardName.lowercased() }
+           prototypeTableView?.reloadData()
+            print(cardArray)
+        default:
+            break
+        }
+        
+        
     }
     
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cardArray.count
+    } 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = prototypeTableView.dequeueReusableCell(withIdentifier: "prototypeCell", for: indexPath) as! TableViewCell
+        let cell = prototypeTableView?.dequeueReusableCell(withIdentifier: "prototypeCell", for: indexPath) as! TableViewCell
         let card = cardArray[indexPath.row]
        // cell.clipsToBounds = true
-        cell.name?.text = card.cardName
+        cell.name.text = card.cardName
        // print("card name : \(String(describing: card.cardName))")
         
         cell.cardDescription?.text = card.cardDescription
@@ -72,18 +85,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
       //  cell.imageURl = URL(string: card.cardFrontImage!)
         print("card foto : \(String(describing: URL(string: card.cardFrontImage!)))")
        
-
         return cell
     }
 
-
-    
-
-    
-    
-    
-    
-    
     func loadImageFromPath(path: String,dates: Date ) -> UIImage? {
         let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
         let pathURL = URL(fileURLWithPath: documentDirectoryPath.appendingPathComponent("\(dates).jpg"))
@@ -96,7 +100,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             print(error.localizedDescription)
         }
         return nil
-
     }
 
    
@@ -105,7 +108,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (rowAction, indexPath) in
             //TODO:
-            self.performSegue(withIdentifier: "Show Edit", sender: self)
+            self.performSegue(withIdentifier: "Show Edit", sender: self.cardArray[indexPath.row])
         }
         editAction.backgroundColor = .blue
 
@@ -123,26 +126,37 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             } catch{
                 print(error)
             }
-            self.prototypeTableView.reloadData()
+            self.prototypeTableView?.reloadData()
         }
         deleteAction.backgroundColor = .red
 
         return [editAction, shareAction, deleteAction]
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    //    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//   //     let destination = storyboard.instantiateViewController(withIdentifier: "showPaging") as! UIPageViewController
+//  //      navigationController?.pushViewController(destination, animated: true)
+//
+//        let destination = UIViewController() // Your destination
+//       navigationController?.pushViewController(destination, animated: true)
+//        performSegue(withIdentifier: "showPaging", sender: self)
 
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        // self.fetchData()
        cardArray = card.fetchData(filter: filter)
-        self.prototypeTableView.reloadData()
-        prototypeTableView.delegate = self
-        prototypeTableView.dataSource = self
-        searchBar.delegate = self
+        self.prototypeTableView?.reloadData()
+        prototypeTableView?.delegate = self
+        prototypeTableView?.dataSource = self
+        searchBar?.delegate = self
         //card.fetchData(filter: filter)
         // Do any additional setup after loading the view.
         
-        let asd = NSCache<AnyObject, AnyObject>()
+      
     
         
     }
@@ -151,17 +165,21 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let identifier = segue.identifier {
             switch identifier {
             case "Show Edit":
-                _ = segue.destination as? MainViewController
-                //            case "Cancel Edit" :
-            //                let seguedToTableV = segue.destination as? TableViewController
+                let   goToEdit = segue.destination as? EditPropertiesViewController
+                goToEdit?.cardEdit = sender as? Card
+            case "showPopover" :
+                let popoverViewController = segue.destination
+                popoverViewController.popoverPresentationController?.delegate = self
+                
             default :  break
                 
             }
         }
     }
     
-    
-    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
 
     
         

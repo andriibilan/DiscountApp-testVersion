@@ -16,6 +16,7 @@
 		8A9D572C1FA718070097A992 /* DiscountApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A9D572A1FA718070097A992 /* DiscountApp.xcdatamodeld */; };
 		8A9D572E1FA718070097A992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A9D572D1FA718070097A992 /* Assets.xcassets */; };
 		8A9D57311FA718070097A992 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A9D572F1FA718070097A992 /* LaunchScreen.storyboard */; };
+		8AA84A891FAF218E00D4B57D /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA84A881FAF218E00D4B57D /* PopoverViewController.swift */; };
 		8AE32FBE1FA87CC700487239 /* CardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE32FBD1FA87CC700487239 /* CardManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		8A9D572D1FA718070097A992 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A9D57301FA718070097A992 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A9D57321FA718070097A992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8AA84A881FAF218E00D4B57D /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		8AE32FBD1FA87CC700487239 /* CardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,10 +69,11 @@
 			children = (
 				8A5EE0CF1FA9D6A0003DC6C3 /* Card.swift */,
 				8A9D57271FA718070097A992 /* Main.storyboard */,
-				8A9D572A1FA718070097A992 /* DiscountApp.xcdatamodeld */,
 				8A934DB01FA746BC006C4198 /* TableViewCell.swift */,
+				8A9D572A1FA718070097A992 /* DiscountApp.xcdatamodeld */,
 				8A10DCF31FA78AB8002D1439 /* MainViewController.swift */,
 				8A934DB61FA76A9D006C4198 /* EditPropertiesViewController.swift */,
+				8AA84A881FAF218E00D4B57D /* PopoverViewController.swift */,
 				8AE32FBD1FA87CC700487239 /* CardManager.swift */,
 				8A9D57321FA718070097A992 /* Info.plist */,
 			);
@@ -159,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA84A891FAF218E00D4B57D /* PopoverViewController.swift in Sources */,
 				8A5EE0D11FA9D6A0003DC6C3 /* Card.swift in Sources */,
 				8A934DB71FA76A9D006C4198 /* EditPropertiesViewController.swift in Sources */,
 				8A9D572C1FA718070097A992 /* DiscountApp.xcdatamodeld in Sources */,

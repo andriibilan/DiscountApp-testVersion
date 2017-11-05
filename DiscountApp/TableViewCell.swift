@@ -23,7 +23,7 @@ class TableViewCell: UITableViewCell {
 //    var imageURl: URL? {
 //        didSet {
 //            imagePrototype?.image = nil
-//            updateUI()
+  //         updateUI()
 //        }
 //
 //    }

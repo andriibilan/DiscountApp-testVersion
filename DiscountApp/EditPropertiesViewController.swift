@@ -11,17 +11,27 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
     
     var card = CardManager()
     var imageIs = ""
-    
+    var cardEdit:Card?
     @IBOutlet weak var cardName: UITextField!
     @IBOutlet weak var frontImage: UIImageView?
     @IBOutlet weak var backImage: UIImageView?
     @IBOutlet weak var barCodeImage: UIImageView!
     @IBOutlet weak var barCodeText: UITextField!
     @IBOutlet weak var cardDescription: UITextView!
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.frontImage?.isUserInteractionEnabled = true
         self.backImage?.isUserInteractionEnabled = true
+        
+        
+        if let cardChange = cardEdit {
+            self.cardName.text = cardChange.cardName
+            self.cardDescription.text = cardChange.cardDescription
+            self.frontImage?.image = loadImageFromPath(path: cardChange.cardFrontImage!, dates: cardChange.cardDate)
+        }
+        
     }
     
     @IBAction func generateBarCode(_ sender: Any) {
@@ -35,11 +45,11 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
             newCard.cardName = cardName.text!
             newCard.cardDescription = cardDescription.text!
             // newCard.setValue(Date(), forKey: "cardDate")
-            newCard.cardDate = Date() as NSDate
+            newCard.cardDate = Date() as Date
             newCard.cardFrontImage = addToUrl((frontImage?.image)!)
             card.saveData()
         }   else {
-            let alertController = UIAlertController(title: "OOPS", message: "You need to give all the informations required to save this product", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "OOPS", message: "You need to give all the informations required to save this card", preferredStyle: .alert)
             
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(alertController, animated: true, completion: nil)
@@ -114,6 +124,20 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
             print(error.localizedDescription)
         }
         return imageString
+        
+    }
+    func loadImageFromPath(path: String,dates: Date ) -> UIImage? {
+        let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+        let pathURL = URL(fileURLWithPath: documentDirectoryPath.appendingPathComponent("\(dates).jpg"))
+        print("Download image to TBV")
+        do {
+            let imageData = try Data(contentsOf: pathURL)
+            return UIImage(data: imageData)
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+        return nil
         
     }
 
