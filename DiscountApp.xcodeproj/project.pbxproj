@@ -17,6 +17,7 @@
 		8A9D572E1FA718070097A992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A9D572D1FA718070097A992 /* Assets.xcassets */; };
 		8A9D57311FA718070097A992 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A9D572F1FA718070097A992 /* LaunchScreen.storyboard */; };
 		8AA84A891FAF218E00D4B57D /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA84A881FAF218E00D4B57D /* PopoverViewController.swift */; };
+		8AA84A8C1FAF600A00D4B57D /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA84A8B1FAF600A00D4B57D /* PageViewController.swift */; };
 		8AE32FBE1FA87CC700487239 /* CardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE32FBD1FA87CC700487239 /* CardManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		8A9D57301FA718070097A992 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A9D57321FA718070097A992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AA84A881FAF218E00D4B57D /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
+		8AA84A8B1FAF600A00D4B57D /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		8AE32FBD1FA87CC700487239 /* CardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +77,7 @@
 				8A934DB61FA76A9D006C4198 /* EditPropertiesViewController.swift */,
 				8AA84A881FAF218E00D4B57D /* PopoverViewController.swift */,
 				8AE32FBD1FA87CC700487239 /* CardManager.swift */,
+				8AA84A8A1FAF5FDD00D4B57D /* PageVC */,
 				8A9D57321FA718070097A992 /* Info.plist */,
 			);
 			path = DiscountApp;
@@ -88,6 +91,14 @@
 				8A9D572D1FA718070097A992 /* Assets.xcassets */,
 			);
 			path = "Support files";
+			sourceTree = "<group>";
+		};
+		8AA84A8A1FAF5FDD00D4B57D /* PageVC */ = {
+			isa = PBXGroup;
+			children = (
+				8AA84A8B1FAF600A00D4B57D /* PageViewController.swift */,
+			);
+			path = PageVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +179,7 @@
 				8A9D572C1FA718070097A992 /* DiscountApp.xcdatamodeld in Sources */,
 				8A934DB11FA746BC006C4198 /* TableViewCell.swift in Sources */,
 				8A10DCF41FA78AB8002D1439 /* MainViewController.swift in Sources */,
+				8AA84A8C1FAF600A00D4B57D /* PageViewController.swift in Sources */,
 				8A9D57241FA718070097A992 /* AppDelegate.swift in Sources */,
 				8AE32FBE1FA87CC700487239 /* CardManager.swift in Sources */,
 			);
