@@ -58,7 +58,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wfh-Na-JGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="625.60000000000002" y="-739.43028485757122"/>
+            <point key="canvasLocation" x="587" y="-541"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Okv-sf-nG5">
@@ -77,6 +77,11 @@
                                                 <segue destination="9Jh-F2-y6j" kind="show" id="kR9-ih-R2x"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="wTF-f2-K3w">
+                                            <connections>
+                                                <segue destination="khJ-lj-ebe" kind="show" id="4Qc-rK-QCL"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -92,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jzM-VP-bhq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1610" y="1349"/>
+            <point key="canvasLocation" x="532" y="-1293"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="a33-VW-Xpo">
@@ -111,6 +116,11 @@
                                                 <segue destination="9Jh-F2-y6j" kind="show" id="6DU-dv-5R7"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="N0b-ew-95i">
+                                            <connections>
+                                                <segue destination="khJ-lj-ebe" kind="show" id="wEn-FO-7oK"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -126,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nRU-Xj-888" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-813" y="1352"/>
+            <point key="canvasLocation" x="-311" y="-1293"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="iBg-Oq-zra">
@@ -145,6 +155,11 @@
                                                 <segue destination="9Jh-F2-y6j" kind="show" id="8em-0J-pyX"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="lGU-CO-kY9">
+                                            <connections>
+                                                <segue destination="khJ-lj-ebe" kind="show" id="Tic-tL-e3K"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -160,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I5X-aS-p33" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-37" y="1355"/>
+            <point key="canvasLocation" x="-1071" y="-1293"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="mjc-yf-NVi">
@@ -168,7 +183,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Bqw-k9-qV8" customClass="PageViewController" customModule="DiscountApp" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6XW-cj-tRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="942"/>
+            <point key="canvasLocation" x="-15" y="743"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="ttx-n9-qfh">
@@ -238,7 +253,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iCK-vm-3ka">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="97.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="97.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="q04-qz-jG7">
                                                             <rect key="frame" x="0.0" y="0.0" width="144" height="82.5"/>
@@ -259,7 +274,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Yr8-XK-TMP">
-                                                            <rect key="frame" x="154" y="0.0" width="221" height="41"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="41"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lem-hj-fxd">
                                                                     <rect key="frame" x="0.0" y="0.0" width="44.5" height="20.5"/>
@@ -463,10 +478,11 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="968.79999999999995" y="-82.758620689655174"/>
+            <point key="canvasLocation" x="1263" y="-101"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6DU-dv-5R7"/>
+        <segue reference="Pu4-Ig-Wzy"/>
+        <segue reference="8em-0J-pyX"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,61 +7,39 @@
 //
 
 import UIKit
-
-class PopoverViewController: MainViewController{
-   var chooseButton: String = ""
-   
+class PopoverViewController: UIViewController{
+ 
+    var delegate : SortedDelegate?
+    
     @IBAction func sortFromAtoZ(_ sender: Any) {
-       chooseButton = "A ➞ Z"
-         dismiss(animated: true, completion: nil)
-        sortedCellFromPopover( chooseButton)
-        prototypeTableView?.reloadData()
-        print("touch button")
+        delegate?.sortedCellFromPopover(.sortFromAtoZ)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func sortFromZtoA(_ sender: Any) {
-        chooseButton = "Z ➞ A"
-        sortedCellFromPopover(chooseButton)
-          prototypeTableView?.reloadData()
-   dismiss(animated: true, completion: nil)
+        delegate?.sortedCellFromPopover(.sortFromZtoA)
+        dismiss(animated: true, completion: nil)
     }
-
+    
     @IBAction func dateUp(_ sender: Any) {
-       // cardArray.sort() { $0.cardDate < $1.cardDate }
-       // self.prototypeTableView.reloadData()
+        delegate?.sortedCellFromPopover(.dateUp)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func dateDown(_ sender: Any) {
-        //cardArray.sort() { $0.cardDate > $1.cardDate }
-       //self.prototypeTableView.reloadData()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        delegate?.sortedCellFromPopover(.dateDown)
+        dismiss(animated: true, completion: nil)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
+}
+protocol SortedDelegate {
+    func sortedCellFromPopover(_ sort: sortedTap)
     
-    
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+}
+enum sortedTap {
+    case sortFromAtoZ
+    case sortFromZtoA
+    case dateUp// = "Date ⬆︎"
+    case dateDown //= "Date ⬇︎"
 }

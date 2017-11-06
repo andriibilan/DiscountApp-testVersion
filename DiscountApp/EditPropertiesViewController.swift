@@ -25,13 +25,11 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
         self.frontImage?.isUserInteractionEnabled = true
         self.backImage?.isUserInteractionEnabled = true
         
-        
         if let cardChange = cardEdit {
             self.cardName.text = cardChange.cardName
             self.cardDescription.text = cardChange.cardDescription
-            self.frontImage?.image = loadImageFromPath(path: cardChange.cardFrontImage!, dates: cardChange.cardDate)
+            self.frontImage?.image = card.loadImageFromPath(path: cardChange.cardFrontImage!)
         }
-        
     }
     
     @IBAction func generateBarCode(_ sender: Any) {
@@ -39,21 +37,22 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
     }
     
     @IBAction func createCard(_ sender: Any) {
-        
         if  cardName.text != "" && cardDescription.text != "" && frontImage != nil {
-            let newCard = Card(context:card.getContext())
-            newCard.cardName = cardName.text!
-            newCard.cardDescription = cardDescription.text!
-            // newCard.setValue(Date(), forKey: "cardDate")
-            newCard.cardDate = Date() as Date
-            newCard.cardFrontImage = addToUrl((frontImage?.image)!)
-            card.saveData()
-        }   else {
+            if cardEdit != nil {
+                card.editCard( card: cardEdit!, name: cardName.text, descript: cardDescription.text, date: Date(), frontImage: card.addToUrl((frontImage?.image)!), backImage: nil, barCode: nil)
+            } else {
+                card.createCard( name: cardName.text, descript: cardDescription.text, date: Date(), frontImage: card.addToUrl((frontImage?.image)!), backImage: nil, barCode: nil)
+            }
+        }else {
             let alertController = UIAlertController(title: "OOPS", message: "You need to give all the informations required to save this card", preferredStyle: .alert)
             
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         }
+        
+        
+        
+
     }
     
     @IBAction func tapToFrontImage(_ sender: Any) {
@@ -113,34 +112,7 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
         }
     }
     
-    
-    func addToUrl (_ photo: UIImage )  -> String {
-        let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
-        let imgPath = URL(fileURLWithPath: documentDirectoryPath.appendingPathComponent("\(Date()).jpg"))// Change extension if you want to save as PNG
-        let imageString = String(describing: imgPath)
-        do{
-            try UIImageJPEGRepresentation(photo, 1.0)?.write(to: imgPath, options: .atomic)
-        }catch let error{
-            print(error.localizedDescription)
-        }
-        return imageString
-        
-    }
-    func loadImageFromPath(path: String,dates: Date ) -> UIImage? {
-        let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
-        let pathURL = URL(fileURLWithPath: documentDirectoryPath.appendingPathComponent("\(dates).jpg"))
-        print("Download image to TBV")
-        do {
-            let imageData = try Data(contentsOf: pathURL)
-            return UIImage(data: imageData)
-            
-        } catch {
-            print(error.localizedDescription)
-        }
-        return nil
-        
-    }
-
+ 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }

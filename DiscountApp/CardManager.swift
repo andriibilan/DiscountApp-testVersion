@@ -10,20 +10,69 @@ import UIKit
 import CoreData
 class CardManager: NSObject {
     
+    
+    
+    func createCard( name: String? , descript: String? , date: Date? ,frontImage: String? , backImage: String? , barCode: String?){
+        let context = getContext()
+        let entity = NSEntityDescription.entity(forEntityName: "Card", in: context)
+        let newCard = NSManagedObject(entity: entity!, insertInto: context)
+            newCard.setValue(name, forKey: "cardName")
+            newCard.setValue(descript, forKey: "cardDescription")
+            newCard.setValue(date, forKey: "cardDate")
+            newCard.setValue(frontImage, forKey: "cardFrontImage")
+        
+        saveData()
+    }
+    
+    
+    func editCard(card: Card, name: String? , descript: String? , date: Date?, frontImage: String? , backImage: String?, barCode: String?){
+        card.cardName = name
+        card.cardDescription = descript
+        card.cardDate = date
+        card.cardFrontImage = frontImage
+        
+         saveData()
+    }
+    
+    func addToUrl (_ photo: UIImage )  -> String {
+        let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+        let uuidStringforURL = UUID().uuidString + ".jpg"
+        let imgPath = URL(fileURLWithPath: documentDirectoryPath.appendingPathComponent(uuidStringforURL))// Change extension if you want to save as PNG
+        let imageString = String(describing: imgPath)
+        print(imageString)
+        do{
+            try UIImageJPEGRepresentation(photo, 1.0)?.write(to: imgPath, options: .atomic)
+        }catch let error{
+            print(error.localizedDescription)
+        }
+        return uuidStringforURL
+        
+    }
+    func loadImageFromPath(path: String) -> UIImage? {
+        let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+        let imageURL = URL(fileURLWithPath: documentDirectoryPath.appendingPathComponent(path))
+        do {
+            let imageData = try Data(contentsOf: imageURL)
+            return UIImage(data: imageData)
+        } catch {
+            print(error.localizedDescription)
+        }
+        return nil
+    }
     func getContext() ->NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
         
     }
     
-    func storeObj(){
-        let context = getContext()
-        let entity = NSEntityDescription.entity(forEntityName: "Card", in: context)
-        
-        let  manageObj = NSManagedObject(entity: entity!, insertInto: context)
-        
- 
-    }
+//    func storeObj(){
+//        let context = getContext()
+//        let entity = NSEntityDescription.entity(forEntityName: "Card", in: context)
+//
+//        let  manageObj = NSManagedObject(entity: entity!, insertInto: context)
+//
+//
+//    }
     
     func saveData(){
         do {
@@ -60,6 +109,10 @@ class CardManager: NSObject {
         
         
     }
+ 
+    
+   
+    
     
 }
 

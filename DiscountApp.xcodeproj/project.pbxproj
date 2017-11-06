@@ -70,13 +70,13 @@
 			isa = PBXGroup;
 			children = (
 				8A5EE0CF1FA9D6A0003DC6C3 /* Card.swift */,
+				8A9D572A1FA718070097A992 /* DiscountApp.xcdatamodeld */,
 				8A9D57271FA718070097A992 /* Main.storyboard */,
 				8A934DB01FA746BC006C4198 /* TableViewCell.swift */,
-				8A9D572A1FA718070097A992 /* DiscountApp.xcdatamodeld */,
 				8A10DCF31FA78AB8002D1439 /* MainViewController.swift */,
 				8A934DB61FA76A9D006C4198 /* EditPropertiesViewController.swift */,
-				8AA84A881FAF218E00D4B57D /* PopoverViewController.swift */,
 				8AE32FBD1FA87CC700487239 /* CardManager.swift */,
+				8AA84A881FAF218E00D4B57D /* PopoverViewController.swift */,
 				8AA84A8A1FAF5FDD00D4B57D /* PageVC */,
 				8A9D57321FA718070097A992 /* Info.plist */,
 			);
