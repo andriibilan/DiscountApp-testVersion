@@ -10,34 +10,30 @@ import UIKit
 //import CoreData
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate, UIPopoverPresentationControllerDelegate, SortedDelegate {
-    
-    
-
-    
     var filter: String = ""
-      var card = CardManager()
-   
-    @IBOutlet weak var prototypeTableView: UITableView?
-    @IBOutlet weak var searchBar: UISearchBar?
-    
+    var card = CardManager()
     var  cardArray: [Card] = []
+    @IBOutlet weak var prototypeTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    
     
     
     func filterForTableView(text: String){
         cardArray = cardArray.filter( { (mod)-> Bool in
             return (mod.cardName?.lowercased().contains(text.lowercased()))!
         })
-        prototypeTableView?.reloadData()
+        prototypeTableView.reloadData()
     }
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchName: String) {
         if searchName.isEmpty{
             cardArray = card.fetchData(filter: filter )
-            prototypeTableView?.reloadData()
+            prototypeTableView.reloadData()
         } else {
             filterForTableView(text: searchName)
-            prototypeTableView?.reloadData()
+            prototypeTableView.reloadData()
             
         }
     }
@@ -46,16 +42,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch sort {
         case .sortFromAtoZ :
             cardArray.sort() {  $0.cardName.lowercased() < $1.cardName.lowercased() }
-            prototypeTableView?.reloadData()
+            prototypeTableView.reloadData()
         case .sortFromZtoA:
             cardArray.sort() {  $0.cardName.lowercased() > $1.cardName.lowercased() }
-            prototypeTableView?.reloadData()
+            prototypeTableView.reloadData()
         case .dateUp:
             cardArray.sort() { $0.cardDate < $1.cardDate }
-            prototypeTableView?.reloadData()
+            prototypeTableView.reloadData()
         case .dateDown:
             cardArray.sort() { $0.cardDate > $1.cardDate }
-            prototypeTableView?.reloadData()
+            prototypeTableView.reloadData()
             
         }
     }
@@ -117,7 +113,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             } catch{
                 print(error)
             }
-            self.prototypeTableView?.reloadData()
+            self.prototypeTableView.reloadData()
         }
         deleteAction.backgroundColor = .red
         
@@ -128,10 +124,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
        // self.fetchData()
        cardArray = card.fetchData(filter: filter)
-        self.prototypeTableView?.reloadData()
-        prototypeTableView?.delegate = self
-        prototypeTableView?.dataSource = self
-        searchBar?.delegate = self
+        self.prototypeTableView.reloadData()
+        prototypeTableView.delegate = self
+        prototypeTableView.dataSource = self
+        searchBar.delegate = self
         //card.fetchData(filter: filter)
         // Do any additional setup after loading the view.
         
