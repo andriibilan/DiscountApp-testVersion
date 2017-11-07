@@ -20,6 +20,8 @@ class CardManager: NSObject {
             newCard.setValue(descript, forKey: "cardDescription")
             newCard.setValue(date, forKey: "cardDate")
             newCard.setValue(frontImage, forKey: "cardFrontImage")
+            newCard.setValue(backImage, forKey: "cardBackImage")
+            newCard.setValue(barCode, forKey: "cardBarCode")
         
         saveData()
     }
@@ -30,6 +32,8 @@ class CardManager: NSObject {
         card.cardDescription = descript
         card.cardDate = date
         card.cardFrontImage = frontImage
+        card.cardBackImage = backImage
+        card.cardBarCode = barCode
         
          saveData()
     }

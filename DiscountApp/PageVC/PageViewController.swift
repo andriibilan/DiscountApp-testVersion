@@ -11,12 +11,14 @@ import UIKit
 class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
   
     var pageControl = UIPageControl()
+    var cardPage: Card?
+    var card = CardManager()
     
     lazy var orderedViewControllers: [UIViewController] = {
         return [self.newViewController(viewController: "frontImage"),
                 self.newViewController(viewController: "backImage"),
                 self.newViewController(viewController: "barCode")]
-        
+      
     }()
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -25,7 +27,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
         }
         
         let previousIndex = viewControllerIndex - 1
-        
         // User is on the first view controller and swiped left to loop to
         // the last view controller.
         guard previousIndex >= 0 else {
@@ -57,9 +58,33 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     }
     
     func newViewController(viewController: String) -> UIViewController{
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:viewController)
+        if viewController == "frontImage"{
+            
+            if let frontImageVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: viewController) as? PageImageViewController{
+                frontImageVC.pageVC = self
+                return frontImageVC
+            }
+        } else if viewController == "backImage" {
+            if let backImageVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: viewController) as? PageBackViewController{
+                backImageVC.pageVC = self
+                return backImageVC
+            }
+        }else if viewController == "barCode" {
+            if let barCodeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: viewController) as? BarCodeViewController {
+                barCodeVC.pageVC = self
+                return barCodeVC
+                
+            }
+        }
+        
+        
+        
+        
+        
+       return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:viewController)
    
     }
+
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         let pageContentViewController = pageViewController.viewControllers![0]
@@ -84,15 +109,16 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
         self.delegate = self
        configurePageControl()
         
-        
         // This sets up the first view that will show up on our page control
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController],
                                direction: .forward,
                                animated: true,
                                completion: nil)}
-        }
-        
+
+    }
+
+   
         
         // Do any additional setup after loading the view.
     

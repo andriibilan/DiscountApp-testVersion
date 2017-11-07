@@ -33,9 +33,10 @@ class PopoverViewController: UIViewController{
 
 
 }
+
+
 protocol SortedDelegate {
     func sortedCellFromPopover(_ sort: sortedTap)
-    
 }
 enum sortedTap {
     case sortFromAtoZ

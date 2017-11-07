@@ -60,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="587" y="-541"/>
         </scene>
-        <!--View Controller-->
+        <!--Bar Code View Controller-->
         <scene sceneID="Okv-sf-nG5">
             <objects>
-                <viewController storyboardIdentifier="frontImage" id="F78-IA-mma" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="barCode" id="F78-IA-mma" customClass="BarCodeViewController" customModule="DiscountApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ynj-cn-ZQ1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,6 +85,11 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I3o-el-8qS">
+                                <rect key="frame" x="37" y="81" width="301" height="545"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.88735070169999997" green="0.049177578450000002" blue="0.0076235026810000002" alpha="0.89380886130000003" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -94,15 +99,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PVb-1m-X2i"/>
                     </view>
+                    <connections>
+                        <outlet property="barCodeImage" destination="I3o-el-8qS" id="srv-Ku-SCL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jzM-VP-bhq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="532" y="-1293"/>
+            <point key="canvasLocation" x="532" y="-1293.1034482758621"/>
         </scene>
-        <!--View Controller-->
+        <!--Page Back View Controller-->
         <scene sceneID="a33-VW-Xpo">
             <objects>
-                <viewController storyboardIdentifier="backImage" id="3hY-75-i83" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="backImage" id="3hY-75-i83" customClass="PageBackViewController" customModule="DiscountApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xa2-hD-8Ja">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,6 +132,11 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDO-YW-pwT">
+                                <rect key="frame" x="31" y="83" width="314" height="534"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -133,15 +146,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dYU-81-K3H"/>
                     </view>
+                    <connections>
+                        <outlet property="backImage" destination="qDO-YW-pwT" id="ble-JS-oPb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nRU-Xj-888" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-311" y="-1293"/>
+            <point key="canvasLocation" x="-311.19999999999999" y="-1293.1034482758621"/>
         </scene>
-        <!--View Controller-->
+        <!--Page Image View Controller-->
         <scene sceneID="iBg-Oq-zra">
             <objects>
-                <viewController storyboardIdentifier="barCode" id="pmY-6i-zqt" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="frontImage" id="pmY-6i-zqt" customClass="PageImageViewController" customModule="DiscountApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JmN-Q8-Jw7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -163,6 +179,11 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ikp-oj-Que">
+                                <rect key="frame" x="49" y="101" width="278" height="514"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.87322145699999998" green="0.98523384329999997" blue="0.07190831751" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.98180311919999996" green="0.30636215210000001" blue="0.56561243530000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -172,15 +193,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rYn-L3-SOc"/>
                     </view>
+                    <connections>
+                        <outlet property="frontImage" destination="ikp-oj-Que" id="6e5-3B-lS7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I5X-aS-p33" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1071" y="-1293"/>
+            <point key="canvasLocation" x="-1071.2" y="-1293.1034482758621"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="mjc-yf-NVi">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Bqw-k9-qV8" customClass="PageViewController" customModule="DiscountApp" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="Main" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Bqw-k9-qV8" customClass="PageViewController" customModule="DiscountApp" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6XW-cj-tRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-15" y="743"/>
@@ -306,7 +330,6 @@
                                             <outlet property="date" destination="yFd-yv-TEo" id="scV-R9-ppl"/>
                                             <outlet property="imagePrototype" destination="xuh-ST-1cY" id="8ph-YF-Mhc"/>
                                             <outlet property="name" destination="Lem-hj-fxd" id="3MM-gD-GLI"/>
-                                            <segue destination="Bqw-k9-qV8" kind="show" id="fem-O7-eil"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -333,6 +356,7 @@
                     <connections>
                         <outlet property="prototypeTableView" destination="aFV-J8-dCi" id="wpg-DA-sNc"/>
                         <outlet property="searchBar" destination="5T6-cb-UPb" id="Pyy-wK-PDe"/>
+                        <segue destination="Bqw-k9-qV8" kind="show" identifier="show Paging" id="Vk4-ph-y6y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Az-Wd-5Ng" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -482,7 +506,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Pu4-Ig-Wzy"/>
-        <segue reference="8em-0J-pyX"/>
+        <segue reference="4Qc-rK-QCL"/>
+        <segue reference="kR9-ih-R2x"/>
     </inferredMetricsTieBreakers>
 </document>

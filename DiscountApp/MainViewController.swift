@@ -7,7 +7,6 @@
 //
 import Foundation
 import UIKit
-//import CoreData
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate, UIPopoverPresentationControllerDelegate, SortedDelegate {
     var filter: String = ""
@@ -89,8 +88,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
 
-
- 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       self.performSegue(withIdentifier: "show Paging", sender: self.cardArray[indexPath.row])
+    }
+    
+    
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (rowAction, indexPath) in
@@ -122,18 +125,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       // self.fetchData()
+      
        cardArray = card.fetchData(filter: filter)
         self.prototypeTableView.reloadData()
         prototypeTableView.delegate = self
         prototypeTableView.dataSource = self
         searchBar.delegate = self
-        //card.fetchData(filter: filter)
-        // Do any additional setup after loading the view.
-        
-      
     
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -146,8 +144,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let popoverViewController = segue.destination as! PopoverViewController
                 popoverViewController.delegate = self
                 popoverViewController.popoverPresentationController?.delegate = self
-                
+            case "show Paging" :
+                let pagingViewController = segue.destination as! PageViewController
+                pagingViewController.cardPage =  sender as? Card
             default :  break
+                // в мене в іншому випадку це паше ) d
                 
             }
         }

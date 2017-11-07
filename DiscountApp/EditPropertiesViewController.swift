@@ -15,7 +15,7 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
     @IBOutlet weak var cardName: UITextField!
     @IBOutlet weak var frontImage: UIImageView?
     @IBOutlet weak var backImage: UIImageView?
-    @IBOutlet weak var barCodeImage: UIImageView!
+    @IBOutlet weak var barCodeImage: UIImageView?
     @IBOutlet weak var barCodeText: UITextField!
     @IBOutlet weak var cardDescription: UITextView!
    
@@ -29,19 +29,32 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
             self.cardName.text = cardChange.cardName
             self.cardDescription.text = cardChange.cardDescription
             self.frontImage?.image = card.loadImageFromPath(path: cardChange.cardFrontImage!)
+            self.backImage?.image = card.loadImageFromPath(path: cardChange.cardBackImage!)
+            self.barCodeImage?.image = card.loadImageFromPath(path: cardChange.cardBarCode!)
         }
     }
     
     @IBAction func generateBarCode(_ sender: Any) {
-        barCodeImage.image = generateBarcode(from: barCodeText.text!)
+        barCodeImage?.image = generateBarcode(from: barCodeText.text!)
     }
     
     @IBAction func createCard(_ sender: Any) {
         if  cardName.text != "" && cardDescription.text != "" && frontImage != nil {
             if cardEdit != nil {
-                card.editCard( card: cardEdit!, name: cardName.text, descript: cardDescription.text, date: Date(), frontImage: card.addToUrl((frontImage?.image)!), backImage: nil, barCode: nil)
+                card.editCard( card: cardEdit!,
+                               name: cardName.text,
+                               descript: cardDescription.text,
+                               date: Date(),
+                               frontImage: card.addToUrl((frontImage?.image)!),
+                               backImage: card.addToUrl((backImage?.image)!),
+                               barCode: card.addToUrl((barCodeImage?.image)!))
             } else {
-                card.createCard( name: cardName.text, descript: cardDescription.text, date: Date(), frontImage: card.addToUrl((frontImage?.image)!), backImage: nil, barCode: nil)
+                card.createCard( name: cardName.text,
+                                 descript: cardDescription.text,
+                                 date: Date(),
+                                 frontImage: card.addToUrl((frontImage?.image)!),
+                                 backImage: card.addToUrl((backImage?.image)!),
+                                 barCode: card.addToUrl((barCodeImage?.image)!))
             }
         }else {
             let alertController = UIAlertController(title: "OOPS", message: "You need to give all the informations required to save this card", preferredStyle: .alert)
@@ -70,10 +83,15 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
         pickerController.allowsEditing = true
         
         let alertController = UIAlertController(title: "Add a Picture", message: "Choose From", preferredStyle: .actionSheet)
-        
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
-            pickerController.sourceType = .camera
-            self.present(pickerController, animated: true, completion: nil)
+            if(UIImagePickerController.isSourceTypeAvailable(.camera)){
+                pickerController.sourceType = .camera
+                self.present(pickerController, animated: true, completion: nil)
+            }else{
+                let alertController = UIAlertController(title: "Error", message: "Camera is not available now", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+            }
             
         }
         let photosLibraryAction = UIAlertAction(title: "Photos Library", style: .default) { (action) in
@@ -99,9 +117,7 @@ class EditPropertiesViewController: UIViewController, UIImagePickerControllerDel
         present(alertController, animated: true, completion: nil)
         
     }
-    
-    
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.dismiss(animated: true, completion: nil)
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
